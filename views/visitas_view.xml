@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+     <record model="ir.ui.view" id="medico.listado_visitas_model_form">
+            <field name="name">Visitas</field>
+            <field name="model">medico.visitas_model</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header></header>
+                    <sheet>
+                        <group name="Grupo">
+                            <field name="nombre" />
+                            <field name="fecha" />
+                            <field name="detalle" />
+                            
+                        </group>
+                    </sheet>
+                     <footer>
+            
+                     </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="medico.listado_visitas_model_tree">
+            <field name="name">Visitas</field>
+            <field name="model">medico.visitas_model</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre"/>
+                    <field name="detalle" />
+                    <field name="fecha"/>
+                   
+                </tree>
+            </field>
+        </record>
+
+       
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="medico.action_window_visitas_model">
+            <field name="name">Visitas</field>
+            <field name="res_model">medico.visitas_model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Visitas" id="medico.menu_visitas_model" parent="medico.menu_root"/>
+       
+       <menuitem name="visitas" id="medico.menu_visitas_model_listado" parent="medico.menu_visitas_model"
+              action="medico.action_window_visitas_model"/>
+    </data>
+</odoo>
+

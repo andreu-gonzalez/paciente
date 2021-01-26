@@ -1,0 +1,111 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="medico.listado_pacientes_model_form">
+      <field name="name">Formulario de Pacientes</field>
+      <field name="model">medico.pacientes_model</field>
+      <field name="arch" type="xml">
+        <form string="Nueva Tarea">
+          <header>
+            <button name="eliminarelhistorial" type="object" string="Eliminar el historial" />
+
+          </header>
+          <sheet>
+            <group name="grupo_padre">
+            
+             
+              <group string="Datos Paciente">
+              <h1>
+                <field name="dni"/>
+              </h1>  
+                <field name="nombre"/>
+                <field name="apellidos"/>
+                <field name="tlf"/>
+                <field name="fecha"/>
+                <field name="email"/>
+                <field name="nvisitas" readonly="True"/>
+               </group> 
+             
+              <group string="Foto">
+                <field name="fotografia" widget="image"/>
+                
+              </group>
+               <notebook>
+                           
+                <page string="Visitas">
+                <group name="Grupo">
+                <field name="visitas" /> 
+                </group>
+                </page>
+                </notebook>
+             </group>
+          
+          
+          </sheet>
+          <footer>
+            
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="medico.listado_pacientes_model_tree">
+      <field name="name">Listado de Pacientes</field>
+      <field name="model">medico.pacientes_model</field>
+      <field name="arch" type="xml">
+        <tree>
+           <field name="dni"/>
+           <field name="nombre"/>
+           <field name="apellidos"/>
+           <field name="tlf"/>
+           <field name="fecha"/>
+           <field name="email"/>
+             
+         
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="medico.action_window_pacientes_model">
+      <field name="name">Listado de Pacientes</field>
+      <field name="res_model">medico.pacientes_model</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="tareas_app.action_server">
+      <field name="name">tareas_app server</field>
+      <field name="model_id" ref="model_tareas_app_tareas_app"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+    <menuitem name="Gestión Pacientes" id="medico.menu_root"/>
+    <!-- menu categories -->
+    <menuitem name="Pacientes" id="medico.menu_pacientes_model" parent="medico.menu_root"/>
+
+<!--
+
+    <menuitem name="Menu 2" id="tareas_app.menu_2" parent="tareas_app.menu_root"/>
+-->
+    <!-- actions -->
+
+    <menuitem name="Pacientes" id="medico.menu_pacientes_model_listado" parent="medico.menu_pacientes_model"
+              action="medico.action_window_pacientes_model"/>
+<!--
+    <menuitem name="Server to list" id="tareas_app" parent="tareas_app.menu_2"
+              action="tareas_app.action_server"/>
+-->
+  </data>
+</odoo>
